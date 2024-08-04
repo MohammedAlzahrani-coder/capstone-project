@@ -86,6 +86,19 @@ public class MerchantStockController {
     }
 
 
+    @PutMapping("/moreStock/{merchantId}/{productId}/{additionalStocks}")
+    public ResponseEntity addStocks(@PathVariable int merchantId,@PathVariable int productId, @PathVariable int additionalStocks){
+
+        boolean isAdded = merchantStockService.addMoreStocks(merchantId,productId,additionalStocks);
+
+        if(isAdded){
+            return ResponseEntity.status(200).body(new ApiResponse("The new stocks has been added"));
+        }
+
+        return ResponseEntity.status(400).body(new ApiResponse("The merchant id or product id is wrong please check them out"));
+
+
+    }
 
 
 }

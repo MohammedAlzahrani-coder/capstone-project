@@ -54,6 +54,18 @@ public class MerchantStockService {
         return false;
     }
 
+    public boolean addMoreStocks(int merchantId, int productId, int additionalStock){
+
+        for (MerchantStock stocks: merchantStocks){
+            if(stocks.getMerchantId() == merchantId && stocks.getProductId() == productId){
+                stocks.setStock(stocks.getStock() + additionalStock);
+                return true;
+            }
+        }
+
+        return false;
+
+    }
 
 
 }
