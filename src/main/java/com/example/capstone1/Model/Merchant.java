@@ -1,4 +1,17 @@
 package com.example.capstone1.Model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class Merchant {
+
+
+    @NotNull(message = "The id should not be null")
+    private int id;
+
+
+    @NotEmpty(message = "The name should not be empty")
+    private String name;
+
+
 }
