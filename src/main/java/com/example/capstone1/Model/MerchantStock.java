@@ -1,7 +1,12 @@
 package com.example.capstone1.Model;
 
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+
+@Data
+@AllArgsConstructor
 public class MerchantStock {
 
 
