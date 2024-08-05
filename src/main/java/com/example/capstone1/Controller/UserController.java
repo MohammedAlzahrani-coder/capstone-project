@@ -80,7 +80,18 @@ public class UserController {
 
      }
 
-
+    @PostMapping("/purchase")
+    public ResponseEntity<ApiResponse> purchaseProduct(@RequestParam int userId, @RequestParam int productId, @RequestParam int merchantId) {
+        int result = userService.purchase(userId, merchantId, productId);
+        return switch (result) {
+            case -1 -> ResponseEntity.badRequest().body(new ApiResponse("User not found"));
+            case -2 -> ResponseEntity.badRequest().body(new ApiResponse("Merchant not found"));
+            case -3 -> ResponseEntity.badRequest().body(new ApiResponse("Product not found"));
+            case -4 -> ResponseEntity.badRequest().body(new ApiResponse("Product not in stock"));
+            case -5 -> ResponseEntity.badRequest().body(new ApiResponse("Insufficient balance"));
+            default -> ResponseEntity.ok(new ApiResponse("Purchase successful"));
+        };
+    }
 
     }
 
