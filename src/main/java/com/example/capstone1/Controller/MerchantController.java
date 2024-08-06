@@ -3,6 +3,7 @@ package com.example.capstone1.Controller;
 import com.example.capstone1.ApiResponse.ApiResponse;
 import com.example.capstone1.Model.Merchant;
 import com.example.capstone1.Model.MerchantStock;
+import com.example.capstone1.Model.Product;
 import com.example.capstone1.Service.MerchantService;
 import com.example.capstone1.Service.MerchantStockService;
 import jakarta.validation.Valid;
@@ -10,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -86,5 +89,11 @@ public class MerchantController {
     }
 
 
+
+    @GetMapping("/total-sales/{merchantId}")
+    public ResponseEntity<Integer> getTotalSales(@PathVariable int merchantId) {
+        int totalSales = merchantService.getTotalSales(merchantId);
+        return ResponseEntity.ok(totalSales);
+    }
 
 }

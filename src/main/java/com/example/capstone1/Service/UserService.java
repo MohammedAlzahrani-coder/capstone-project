@@ -100,7 +100,10 @@ public class UserService {
             return -3; // Product not found
         }
 
+        System.out.println("Checking stock for merchantId: " + merchantId + ", productId: " + productId);
         boolean inStock = merchantStockService.checkStock(merchantId, productId);
+        System.out.println("Stock available: " + inStock);
+
         if (!inStock) {
             return -4; // Product not in stock
         }
@@ -109,11 +112,14 @@ public class UserService {
             return -5; // Insufficient balance
         }
 
-        merchantStockService.updateStock(merchantId, productId, -1); // Decrease stock by 1
+        boolean stockReduced = merchantStockService.reduceStock(merchantId, productId, 1);
+        if (!stockReduced) {
+            return -6; // Stock reduction failed
+        }
+
         user.setBalance(user.getBalance() - product.getPrice()); // Deduct price from user balance
         return 0; // Purchase successful
     }
-
 
     }
 

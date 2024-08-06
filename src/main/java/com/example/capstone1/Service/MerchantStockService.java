@@ -54,25 +54,29 @@ public class MerchantStockService {
         return false;
     }
 
-    // Method to check if a product is in stock for a given merchant
     public boolean checkStock(int merchantId, int productId) {
+        System.out.println("Checking stock for merchantId: " + merchantId + ", productId: " + productId);
         for (MerchantStock stock : merchantStocks) {
+            System.out.println("Checking stock entry: " + stock);
             if (stock.getMerchantId() == merchantId && stock.getProductId() == productId) {
+                System.out.println("Stock found for product: " + productId);
                 return stock.getStock() > 0;
             }
         }
+        System.out.println("No stock found for product: " + productId);
         return false;
     }
 
-    // Method to update the stock for a given merchant and product
-    public void updateStock(int merchantId, int productId, int quantity) {
-        for (MerchantStock stock : merchantStocks) {
-            if (stock.getMerchantId() == merchantId && stock.getProductId() == productId) {
-                stock.setStock(stock.getStock() + quantity);
-                return;
-            }
-        }
-        // If stock entry does not exist, create a new one
-        merchantStocks.add(new MerchantStock(0, productId, merchantId, quantity));
-    }
+//    public void updateStock(int merchantId, int productId, int quantity) {
+//        for (MerchantStock stock : merchantStocks) {
+//            if (stock.getMerchantId() == merchantId && stock.getProductId() == productId) {
+//                stock.setStock(stock.getStock() + quantity);
+//                return;
+//            }
+//        }
+//        // If stock entry does not exist, create a new one
+//        merchantStocks.add(new MerchantStock(0, productId, merchantId, quantity));
+//    }
+
+
 }

@@ -27,5 +27,9 @@ public class Product {
     private int categoryId;
 
 
+    private int sale;
+
+    @NotNull(message = "The stocks should not be null")
+    private int stocks;
 
 }

@@ -89,6 +89,7 @@ public class UserController {
             case -3 -> ResponseEntity.badRequest().body(new ApiResponse("Product not found"));
             case -4 -> ResponseEntity.badRequest().body(new ApiResponse("Product not in stock"));
             case -5 -> ResponseEntity.badRequest().body(new ApiResponse("Insufficient balance"));
+            case -6 -> ResponseEntity.badRequest().body(new ApiResponse("Stock reduction failed"));
             default -> ResponseEntity.ok(new ApiResponse("Purchase successful"));
         };
     }

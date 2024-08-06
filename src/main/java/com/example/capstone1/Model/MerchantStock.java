@@ -1,6 +1,7 @@
 package com.example.capstone1.Model;
 
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -21,6 +22,11 @@ public class MerchantStock {
     @NotNull(message = "The merchant id should not be null")
     private int merchantId;
 
+    @Positive(message = "The stock should be positive")
     @NotNull(message = "The message should not be null")
     private int stock = 10;
+
+
+    private int sales = 0;
+
 }

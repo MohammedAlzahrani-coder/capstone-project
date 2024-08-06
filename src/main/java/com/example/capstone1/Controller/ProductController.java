@@ -12,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/product")
 @RequiredArgsConstructor
@@ -82,5 +85,26 @@ public class ProductController {
     }
 
 
+    @GetMapping("/top-selling")
+    public ResponseEntity<List<Product>> getTopSellingProducts() {
+        List<Product> products = productService.getTopSellingProducts();
+        return ResponseEntity.ok(products);
+    }
 
+    @GetMapping("/low-stock")
+    public ResponseEntity<List<Product>> getLowStockProducts() {
+        List<Product> products = productService.getLowStockProducts();
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/price-range")
+    public ResponseEntity<List<Product>> getProductsByPriceRange(@RequestParam int minPrice, @RequestParam int maxPrice) {
+        return ResponseEntity.ok(productService.getProductsByPriceRange(minPrice, maxPrice));
+    }
+
+
+    @GetMapping("/min-sales")
+    public ResponseEntity<List<Product>> getProductsByMinSales(@RequestParam int minSales) {
+        return ResponseEntity.ok(productService.getProductsByMinSales(minSales));
+    }
 }
